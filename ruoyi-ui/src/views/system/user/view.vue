@@ -60,6 +60,12 @@
             <span class="info-value plaintext">{{ sexLabel }}</span>
           </div>
         </el-col>
+        <el-col :span="12">
+          <div class="info-item">
+            <label class="info-label">年龄：</label>
+            <span class="info-value plaintext">{{ info.age }}</span>
+          </div>
+        </el-col>
       </el-row>
       <el-row :gutter="20" class="mb8">
         <el-col :span="24">

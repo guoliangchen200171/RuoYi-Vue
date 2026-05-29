@@ -54,6 +54,7 @@
           <el-table-column label="用户昵称" align="center" key="nickName" prop="nickName" v-if="columns.nickName.visible" :show-overflow-tooltip="true" />
           <el-table-column label="部门" align="center" key="deptName" prop="dept.deptName" v-if="columns.deptName.visible" :show-overflow-tooltip="true" />
           <el-table-column label="手机号码" align="center" key="phonenumber" prop="phonenumber" v-if="columns.phonenumber.visible" width="120" />
+          <el-table-column label="年龄" align="center" key="age" prop="age" v-if="columns.age.visible" width="80" />
           <el-table-column label="状态" align="center" key="status" v-if="columns.status.visible">
             <template slot-scope="scope">
               <el-switch v-model="scope.row.status" active-value="0" inactive-value="1" @change="handleStatusChange(scope.row)"></el-switch>
@@ -129,6 +130,13 @@
               </el-select>
             </el-form-item>
           </el-col>
+          <el-col :span="12">
+            <el-form-item label="年龄" prop="age">
+              <el-input-number v-model="form.age" controls-position="right" :min="0" :max="120" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
           <el-col :span="12">
             <el-form-item label="状态">
               <el-radio-group v-model="form.status">
@@ -238,6 +246,7 @@ export default {
         nickName: { label: '用户昵称', visible: true },
         deptName: { label: '部门', visible: true },
         phonenumber: { label: '手机号码', visible: true },
+        age: { label: '年龄', visible: true },
         status: { label: '状态', visible: true },
         createTime: { label: '创建时间', visible: true }
       },
@@ -263,6 +272,9 @@ export default {
             message: "请输入正确的手机号码",
             trigger: "blur"
           }
+        ],
+        age: [
+          { required: true, message: "年龄不能为空", trigger: "blur" }
         ]
       }
     }
@@ -335,6 +347,7 @@ export default {
         phonenumber: undefined,
         email: undefined,
         sex: undefined,
+        age: 18,
         status: "0",
         remark: undefined,
         postIds: [],

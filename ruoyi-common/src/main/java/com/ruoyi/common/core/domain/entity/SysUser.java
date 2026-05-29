@@ -52,6 +52,10 @@ public class SysUser extends BaseEntity
     @Excel(name = "用户性别", readConverterExp = "0=男,1=女,2=未知")
     private String sex;
 
+    /** 年龄 */
+    @Excel(name = "年龄")
+    private Integer age;
+
     /** 用户头像 */
     private String avatar;
 
@@ -189,6 +193,19 @@ public class SysUser extends BaseEntity
         this.sex = sex;
     }
 
+    @NotNull(message = "年龄不能为空")
+    @Min(value = 0, message = "年龄不能小于0")
+    @Max(value = 120, message = "年龄不能超过120")
+    public Integer getAge()
+    {
+        return age;
+    }
+
+    public void setAge(Integer age)
+    {
+        this.age = age;
+    }
+
     public String getAvatar()
     {
         return avatar;
@@ -320,6 +337,7 @@ public class SysUser extends BaseEntity
             .append("email", getEmail())
             .append("phonenumber", getPhonenumber())
             .append("sex", getSex())
+            .append("age", getAge())
             .append("avatar", getAvatar())
             .append("password", getPassword())
             .append("status", getStatus())
